@@ -1,0 +1,40 @@
+import random
+
+def obter_numero_usuario():
+    while True:
+        try:
+            numero = int(input("Adivinhe um número entre 1 e 100: "))
+            if 1 <= numero <= 100:
+                return numero
+            else:
+                print("Por favor, insira um número entre 1 e 100.")
+        except ValueError:
+            print("Entrada inválida. Por favor, insira um número inteiro.")
+
+def jogar():
+    numero_secreto = random.randint(1, 100)
+    tentativas = 0
+    print("Bem-vindo ao jogo de adivinhação!")
+
+    while True:
+        tentativas += 1
+        numero_usuario = obter_numero_usuario()
+
+        if numero_usuario < numero_secreto:
+            print("Muito baixo! Tente novamente.")
+        elif numero_usuario > numero_secreto:
+            print("Muito alto! Tente novamente.")
+        else:
+            print(f"Parabéns! Você adivinhou o número {numero_secreto} em {tentativas} tentativas.")
+            break
+
+def main():
+    while True:
+        jogar()
+        jogar_novamente = input("Você gostaria de jogar novamente? (s/n): ").strip().lower()
+        if jogar_novamente != 's':
+            print("Obrigado por jogar! Até a próxima.")
+            break
+
+if __name__ == "__main__":
+    main()
